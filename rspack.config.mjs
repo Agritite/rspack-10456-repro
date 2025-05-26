@@ -1,6 +1,6 @@
-import { defineConfig } from "@rspack/cli";
 import { rspack } from "@rspack/core";
 import { LicenseWebpackPlugin } from 'license-webpack-plugin';
+import { merge } from "webpack-merge";
 
 const isThirteenLicense =
     '            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\r\n' +
@@ -17,13 +17,8 @@ const isThirteenLicense =
     '\r\n' +
     '  0. You just DO WHAT THE FUCK YOU WANT TO.\r\n';
 
-export default defineConfig({
-    entry: [
-        './src/main.ts'
-    ],
-    target: 'electron36.3-main',
+const baseConfig = {
     output: {
-        filename: 'electron-main.js',
         path: 'dist',
     },
     module: {
@@ -53,10 +48,35 @@ export default defineConfig({
     plugins: [
         new rspack.ProgressPlugin(),
         new LicenseWebpackPlugin({
-            perChunkOutput: false,
+            perChunkOutput: true,
             outputFilename: '[name].licence.txt', // this is already LicenseWebpackPlugin's default, included for explicitness
             licenseTextOverrides: {
                 'is-thirteen': isThirteenLicense
             },
         })],
-});
+};
+
+const mainConfig = {
+    entry: {
+        'electron-main': './src/main.ts',
+    },
+    target: 'electron36.3-main',
+    output: {
+        filename: 'electron-main.js',
+    },
+}
+
+const preloadConfig = {
+    entry: {
+        'electron-preload': './src/preload.ts',
+    },
+    target: 'electron36.3-preload',
+    output: {
+        filename: 'electron-preload.js',
+    },
+}
+
+export default [
+    merge(baseConfig, mainConfig),
+    merge(baseConfig, preloadConfig),
+];

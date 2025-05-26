@@ -21,7 +21,8 @@
     "@swc/helpers": "^0.5.17",
     "electron": "^36.3.1",
     "license-webpack-plugin": "^4.0.2",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "is-thirteen": "^2.0.0"
