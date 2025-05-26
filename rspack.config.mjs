@@ -54,7 +54,7 @@ export default defineConfig({
         new rspack.ProgressPlugin(),
         new LicenseWebpackPlugin({
             perChunkOutput: false,
-            outputFilename: '[name].licence.txt',
+            outputFilename: '[name].licence.txt', // this is already LicenseWebpackPlugin's default, included for explicitness
             licenseTextOverrides: {
                 'is-thirteen': isThirteenLicense
             },
