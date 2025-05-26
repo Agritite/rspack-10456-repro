@@ -1,6 +1,5 @@
 # What
-* https://github.com/web-infra-dev/rspack/issues/7960
-* https://github.com/web-infra-dev/rspack/issues/10456
+* https://github.com/web-infra-dev/rspack/issues/10475
 
 # How
 1. `pnpm i`
