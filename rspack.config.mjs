@@ -1,18 +1,14 @@
 import { rspack } from "@rspack/core";
 import { defineConfig } from '@rspack/cli';
-import { LicenseWebpackPlugin } from 'license-webpack-plugin';
 
 export default defineConfig({
     entry: {
         'electron-main': './src/main.ts',
     },
-    target: 'electron36.3-main',
+    target: 'electron38.2-main',
     output: {
         filename: '[name].js',
         path: 'dist',
-    },
-    optimization: {
-        concatenateModules: false, // see readme
     },
     module: {
         rules: [
@@ -29,7 +25,7 @@ export default defineConfig({
                     },
                     env: {
                         targets: {
-                            electron: 36,
+                            electron: 38,
                         },
                     },
                 }
@@ -40,6 +36,5 @@ export default defineConfig({
     devtool: false,
     plugins: [
         new rspack.ProgressPlugin(),
-        new LicenseWebpackPlugin()
     ],
 });
